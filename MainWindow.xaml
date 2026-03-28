@@ -62,6 +62,9 @@
         <TabItem Header="벅 컨버터 코일">
             <local:BuckConverterUC/>
         </TabItem>
+        <TabItem Header="부스트 컨버터 코일">
+            <local:BoostConverterUC/>
+        </TabItem>
     </TabControl>
 
 </Window>
