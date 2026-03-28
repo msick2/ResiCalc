@@ -1,0 +1,67 @@
+<Window x:Class="_260328_ResiCalc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:_260328_ResiCalc"
+        Title="저항 계산기" Height="660" Width="860" MinWidth="780" MinHeight="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F2F5">
+
+    <Window.Resources>
+        <!-- 탭 컨트롤 -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" BorderBrush="#CFD8DC" BorderThickness="0,0,0,1" Background="White">
+                                <TabPanel IsItemsHost="True" Background="Transparent" Margin="8,0,0,0"/>
+                            </Border>
+                            <ContentPresenter Grid.Row="1" ContentSource="SelectedContent"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 탭 아이템 -->
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="bd" Padding="18,12" Background="Transparent"
+                                BorderBrush="Transparent" BorderThickness="0,0,0,3">
+                            <TextBlock x:Name="txt" Text="{TemplateBinding Header}"
+                                       FontSize="13" Foreground="#90A4AE"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd"  Property="BorderBrush" Value="#1A237E"/>
+                                <Setter TargetName="txt" Property="Foreground"  Value="#1A237E"/>
+                                <Setter TargetName="txt" Property="FontWeight"  Value="Bold"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="txt" Property="Foreground" Value="#3949AB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <TabControl>
+        <TabItem Header="전압 분배 저항">
+            <local:VoltDividerUC/>
+        </TabItem>
+        <TabItem Header="벅 컨버터 코일">
+            <local:BuckConverterUC/>
+        </TabItem>
+    </TabControl>
+
+</Window>
